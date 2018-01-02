@@ -2,16 +2,13 @@
 
 export default class AppComponent {
     constructor(
-
+        /** $state */ $state,
     ) {
+        this.$state = $state;
     }
     
     
     $onInit() {
-        console.log('this is the app component');
-    }
-
-    goToHome() {
-        console.log('go to home');
+        this.$state.go('home');
     }
 }

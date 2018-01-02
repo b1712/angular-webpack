@@ -1,8 +1,12 @@
+body {
+  margin: 0;
+}
+
 .main {
   display: flex;
 
   &__content {
-    border: 1px solid blue;
     width: 100%;
+    background-color: #dddddd;
   }
 }
