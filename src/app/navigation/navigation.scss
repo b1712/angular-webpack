@@ -1,0 +1,21 @@
+.app__nav {
+  display: flex;
+  width: 180px;
+  height: 600px;
+  border: 1px solid red;
+
+  &__list {
+    list-style-type: none;
+    padding-left: 0;
+
+    &__item {
+
+      &__button {
+        width: 180px;
+        height: 30px;
+        margin-bottom: 15px;
+
+      }
+    }
+  }
+}

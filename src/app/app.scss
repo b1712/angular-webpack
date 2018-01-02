@@ -1,0 +1,8 @@
+.main {
+  display: flex;
+
+  &__content {
+    border: 1px solid blue;
+    width: 100%;
+  }
+}
