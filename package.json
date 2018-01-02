@@ -1,6 +1,10 @@
 {
   "name": "seed-project",
   "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url:": "https://github.com/b1712/es6-webpack-seed.git"
+  },
   "description": "Seed project",
   "main": "index.js",
   "scripts": {
