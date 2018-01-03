@@ -1,0 +1,36 @@
+<div class="box__container">
+    <div class="box__container__header">
+        <img src="../../../img/box-icon.png" alt="box icon" class="box__container__header__image">
+        <img src="../../../img/oauth-icon.png" alt="O Auth 2 icon" class="box__container__header__image">
+    </div>
+
+    <div class="box__container__content">
+        <div class="box__container__content__row">
+            <input class="box__container__content__input"
+                   placeholder="Client ID"
+                   ng-model="$ctrl.clientId">
+            <span>{{$ctrl.v1}}</span>
+        </div>
+
+        <div class="box__container__content__row">
+            <input class="box__container__content__input"
+                   placeholder="Client Secret"
+                   ng-model="$ctrl.clientSecret">
+            <span>{{$ctrl.v2}}</span>
+        </div>
+
+        <div class="box__container__content__row">
+            <input class="box__container__content__input"
+                   placeholder="User Access Token"
+                   ng-model="$ctrl.userAccessToken">
+            <span>{{$ctrl.v2}}</span>
+        </div>
+
+        <input type="file" style="display: block" />
+        <button>Open File Dialog</button>
+    </div>
+</div>
+
+<pre>Enterprise ID: 36476047</pre>
+<pre>Client ID: cwt016ltj4drr9aqx9rh7vv7ls8vi9va</pre>
+<pre>Client Secret: irrXEgrrTe5gLEBjQ97805aJeBxrzXiJ</pre>

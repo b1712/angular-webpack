@@ -13,12 +13,14 @@ export default class NavigationComponent {
     }
 
     goToHome() {
-        console.log('go to Home');
         this.$state.go('home');
     }
 
+    goToBox() {
+        this.$state.go('box');
+    }
+
     goToPage2() {
-        console.log('go to Page 2');
         this.$state.go('page2');
     }
 }
