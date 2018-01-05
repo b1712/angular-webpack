@@ -49,6 +49,11 @@ module.exports = {
             }
         ]
     },
+    node: {
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty'
+    },
     plugins: [
         new ExtractTextPlugin({
             filename: 'bundle.css'
