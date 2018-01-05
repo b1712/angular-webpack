@@ -15,13 +15,13 @@ export default class BoxComponent {
     // https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en-US
 
     $onInit() {
-        console.log('this is the box component');
-        this.idShowHideLabel = 'Show';
-        this.secretShowHideLabel = 'Show';
+        this.showIdButtonLabel = 'Show';
+        this.showSecretButtonLabel = 'Show';
 
         this.loadJSON('./box-ids.json',
             (success) => {
-                this.connectToBox(success);
+                this.clientId = success.boxAppSettings.clientID;
+                this.clientSecret = success.boxAppSettings.clientSecret;
             },
             (error) => {
                 console.log('Unable to parse Box Ids from json file, ', error)
@@ -42,30 +42,33 @@ export default class BoxComponent {
         xhr.send();
     }
 
-    connectToBox(data) {
-        this.clientId = data.boxAppSettings.clientID;
-        this.clientSecret = data.boxAppSettings.clientSecret;
-
+    connectToBox() {
         const sdk = new BoxSDK({
             clientID: this.clientId,
             clientSecret: this.clientSecret,
         });
 
-        const client = sdk.getBasicClient('QNEILBQ8uhl3ksBiCD8GWVNAiXpleBEs'); // developer bearer token valid for 1hr
+        const client = sdk.getBasicClient('MTM6WzAQXOD4nS42GCCSKS1wD8a7AJW9'); // developer bearer token valid for 1hr
 
         client.users.get(client.CURRENT_USER_ID)
-            .then(user => console.log('Hello', user.name, '!'))
-            .catch(err => console.log('Got an error!', err));
+            .then((user) => {
+                this.greeting = `Hello ${user.name}, would you like to upload a file to your Box account.`;
+                this.refreshDomAfterConnection();
+            })
+            .catch((error) => {
+                document.getElementById('connect-greeting').innerHTML = error;
+            });
+    }
+    
+    toggleCodes(key) {
+        this[key] = !this[key];
+        this[`${key}ButtonLabel`] = this[`${key}ButtonLabel`] === 'Show' ? 'Hide' : 'Show';
     }
 
-    toggleClientId() {
-        this.showId = !this.showId;
-        this.idShowHideLabel = this.idShowHideLabel === 'Show' ? 'Hide' : 'Show';
-    }
-
-    toggleClientSecret() {
-        this.showSecret = !this.showSecret;
-        this.secretShowHideLabel = this.secretShowHideLabel === 'Show' ? 'Hide' : 'Show';
+    refreshDomAfterConnection() {
+        document.getElementById('connect-greeting').innerHTML = this.greeting;
+        document.getElementById('connect-btn').setAttribute('disabled', 'button');
+        document.getElementById('upload-section').removeAttribute('hidden');
     }
 
 }

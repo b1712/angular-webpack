@@ -6,14 +6,21 @@
 
     <div class="box__container__content">
         <div class="box__container__content__row">
-            <button class="box__container__content__button" ng-click="$ctrl.toggleClientId()">{{$ctrl.idShowHideLabel}} Client ID</button>
+            <button class="box__container__content__button" ng-click="$ctrl.toggleCodes('showId')">{{$ctrl.showIdButtonLabel}} Client ID</button>
             <span ng-show="$ctrl.showId">{{$ctrl.clientId}}</span>
         </div>
 
         <div class="box__container__content__row">
-            <button class="box__container__content__button" ng-click="$ctrl.toggleClientSecret()">{{$ctrl.secretShowHideLabel}} Client Secret</button>
+            <button class="box__container__content__button" ng-click="$ctrl.toggleCodes('showSecret')">{{$ctrl.showSecretButtonLabel}} Client Secret</button>
             <span ng-show="$ctrl.showSecret">{{$ctrl.clientSecret}}</span>
         </div>
+
+        <div class="box__container__content__row">
+            <button id="connect-btn" class="box__container__content__button" ng-click="$ctrl.connectToBox()">Connect to Box</button>
+            <span id="connect-greeting"></span>
+        </div>
+
+        <div hidden id="upload-section">THIS IS THE UPLOAD SECTION</div>
 
         <div class="box__container__content__row">
             <input class="box__container__content__input"
