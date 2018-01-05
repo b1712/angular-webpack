@@ -6,17 +6,13 @@
 
     <div class="box__container__content">
         <div class="box__container__content__row">
-            <input class="box__container__content__input"
-                   placeholder="Client ID"
-                   ng-model="$ctrl.clientId">
-            <span>{{$ctrl.v1}}</span>
+            <button class="box__container__content__button" ng-click="$ctrl.toggleClientId()">{{$ctrl.idShowHideLabel}} Client ID</button>
+            <span ng-show="$ctrl.showId">{{$ctrl.clientId}}</span>
         </div>
 
         <div class="box__container__content__row">
-            <input class="box__container__content__input"
-                   placeholder="Client Secret"
-                   ng-model="$ctrl.clientSecret">
-            <span>{{$ctrl.v2}}</span>
+            <button class="box__container__content__button" ng-click="$ctrl.toggleClientSecret()">{{$ctrl.secretShowHideLabel}} Client Secret</button>
+            <span ng-show="$ctrl.showSecret">{{$ctrl.clientSecret}}</span>
         </div>
 
         <div class="box__container__content__row">

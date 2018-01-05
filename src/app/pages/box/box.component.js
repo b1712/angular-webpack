@@ -1,6 +1,6 @@
 /* @ngInject */
 
-var BoxSDK = require('box-node-sdk');
+const BoxSDK = require('box-node-sdk');
 
 export default class BoxComponent {
     constructor(
@@ -8,54 +8,64 @@ export default class BoxComponent {
     ) {
 
     }
-// change to node modules required
-// https://community.box.com/t5/Box-Developer-Forum/Problem-with-SSL-invoking-user-service-with-Angular-4/td-p/39890
+    
+    // edit the box api config in node modules required see,
+    // https://community.box.com/t5/Box-Developer-Forum/Problem-with-SSL-invoking-user-service-with-Angular-4/td-p/39890
+    // Google Chrome Extension needed for CORS issue when using localhost see,
+    // https://chrome.google.com/webstore/detail/allow-control-allow-origi/nlfbmbojpeacfghkpbjhddihlkkiljbi?hl=en-US
 
     $onInit() {
         console.log('this is the box component');
+        this.idShowHideLabel = 'Show';
+        this.secretShowHideLabel = 'Show';
 
         this.loadJSON('./box-ids.json',
             (success) => {
                 this.connectToBox(success);
             },
             (error) => {
-                console.log('Unable to connect to Box, ', error)
+                console.log('Unable to parse Box Ids from json file, ', error)
             }
         );
     }
 
     loadJSON(path, success, error) {
-        var xhr = new XMLHttpRequest();
-        xhr.onreadystatechange = function()
-        {
+        const xhr = new XMLHttpRequest();
+
+        xhr.onreadystatechange = () => {
             if (xhr.readyState === XMLHttpRequest.DONE) {
-                if (xhr.status === 200) {
-                    if (success)
-                        success(JSON.parse(xhr.responseText));
-                } else {
-                    if (error)
-                        error(xhr);
-                }
+                xhr.status === 200 ? success(JSON.parse(xhr.responseText)) : error(xhr);
             }
         };
+
         xhr.open("GET", path, true);
         xhr.send();
     }
 
     connectToBox(data) {
-        console.log('a = ', data);
-        console.log('b = ', data.boxAppSettings.clientID);
-        console.log('c = ', data.boxAppSettings.clientSecret);
-        var sdk = new BoxSDK({
-            clientID: data.boxAppSettings.clientID,
-            clientSecret: data.boxAppSettings.clientSecret
+        this.clientId = data.boxAppSettings.clientID;
+        this.clientSecret = data.boxAppSettings.clientSecret;
+
+        const sdk = new BoxSDK({
+            clientID: this.clientId,
+            clientSecret: this.clientSecret,
         });
 
-        var client = sdk.getBasicClient('TP7IXxUveWYKtl5Vd0GDpIcqTEiF53ll'); // developer bearer token valid for 1hr
+        const client = sdk.getBasicClient('QNEILBQ8uhl3ksBiCD8GWVNAiXpleBEs'); // developer bearer token valid for 1hr
 
         client.users.get(client.CURRENT_USER_ID)
             .then(user => console.log('Hello', user.name, '!'))
             .catch(err => console.log('Got an error!', err));
+    }
+
+    toggleClientId() {
+        this.showId = !this.showId;
+        this.idShowHideLabel = this.idShowHideLabel === 'Show' ? 'Hide' : 'Show';
+    }
+
+    toggleClientSecret() {
+        this.showSecret = !this.showSecret;
+        this.secretShowHideLabel = this.secretShowHideLabel === 'Show' ? 'Hide' : 'Show';
     }
 
 }
