@@ -1,0 +1,17 @@
+<div class="widget-container">
+    <div class="widget-container__header-image">
+        <img src="../../../img/widgets.png" alt="widgets icon">
+    </div>
+
+    <div class="widget-container__auto-completer">
+        <div class="widget-container__auto-completer__label">Auto Complete Dropdown</div>
+        <autocomplete-dropdown
+                placeholder="Select a Country"
+                items="$ctrl.countries"
+                display-field="name"
+                selected="$ctrl.model"
+                on-change="$ctrl.handleCountrySelection(event)">
+        </autocomplete-dropdown>
+        <div id="country-info" class="widget-container__auto-completer__country-info"></div>
+    </div>
+</div>

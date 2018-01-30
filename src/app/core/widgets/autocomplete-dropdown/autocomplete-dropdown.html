@@ -1,0 +1,21 @@
+<div class="autocomplete-dropdown" >
+    <i class="fa fa-chevron-down autocomplete-dropdown__input__arrow"></i>
+    <input class="autocomplete-dropdown__input"
+           ng-keydown="$ctrl.handleKeyDown($event)"
+           type="text"
+           ng-change="$ctrl.onSearchTermChange()"
+           placeholder="{{$ctrl.placeholder}}"
+           ng-model="$ctrl.model"
+           ng-blur="$ctrl.handleBlur()"
+           ng-focus="$ctrl.handleFocus()"
+           ng-paste="$event.preventDefault()"/>
+
+    <div class="input">
+        <autocomplete-results
+            select-item="$ctrl.selectItem(item)"
+            display-field="{{$ctrl.displayField}}"
+            ng-show="$ctrl.dropdownVisible && $ctrl.filteredList.length"
+            items="$ctrl.filteredList">
+        </autocomplete-results>
+    </div>
+</div>

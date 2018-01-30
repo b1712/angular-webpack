@@ -9,18 +9,16 @@ export default class NavigationComponent {
 
 
     $onInit() {
-        console.log('this is the navigation component');
+        this.links = [
+            { label: 'Home', state: 'home' },
+            { label: 'Widget Page', state: 'widgetPage' },
+            { label: 'Filter Page', state: 'filterPage' },
+            { label: 'Page 2', state: 'page2' }
+        ];
     }
 
-    goToHome() {
-        this.$state.go('home');
+    goTo(state) {
+        this.$state.go(state);
     }
 
-    goToBox() {
-        this.$state.go('box');
-    }
-
-    goToPage2() {
-        this.$state.go('page2');
-    }
 }

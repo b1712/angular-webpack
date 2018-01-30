@@ -1,0 +1,27 @@
+.widget-container {
+
+  &__header-image {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+  }
+
+  &__auto-completer {
+    margin: 50px 0 0 50px;
+
+    &__label {
+      margin-bottom: 10px;
+      padding-left: 10px;
+      font-family: Helvetica, Arial, sans-serif;
+    }
+
+    &__country-info {
+      padding-left: 10px;
+      margin-top: 10px;
+      font-size: 14px;
+      color: #0074D9;
+    }
+
+  }
+}
+

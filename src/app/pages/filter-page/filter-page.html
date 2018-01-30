@@ -1,0 +1,31 @@
+<div class="filter-container">
+    <div class="filter-container__header-image">
+        <img src="../../../img/filter.png" alt="filter icon">
+    </div>
+
+    <div class="filter-container__string-filters">
+        <div class="filter-container__section-header">
+            <div>String Filters</div>
+            <div>
+                <div>To Title Case</div>
+                <input type="text"
+                       ng-model="$ctrl.toTitleCaseInput"
+                       placeholder="Enter String"
+                       ng-blur="$ctrl.handleTitleCaseBlur()"/>
+
+                <div>{{$ctrl.toTitleCaseInput | toTitleCase}}</div>
+                <div>Output from component (on-blur): {{$ctrl.toTitleCaseFromComponent}}</div>
+            </div>
+
+            <div>
+                <div>Mask String</div>
+                <input type="text"
+                       ng-model="$ctrl.maskStringInput"
+                       placeholder="Enter String"
+                       ng-blur="$ctrl.handleMaskBlur()" />
+
+                <div>{{$ctrl.maskedStr}}</div>
+            </div>
+        </div>
+    </div>
+</div>
