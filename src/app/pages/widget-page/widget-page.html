@@ -14,4 +14,16 @@
         </autocomplete-dropdown>
         <div id="country-info" class="widget-container__auto-completer__country-info"></div>
     </div>
+
+    <div class="widget-container__date-formatter">
+        <div class="widget-container__date-formatter__label">Date Formatter</div>
+        <div class="widget-container__date-formatter__date">
+            <span>Current Date/Time :</span>
+            <span>{{$ctrl.dateTime}}</span>
+        </div>
+        <div class="widget-container__date-formatter__date" ng-if="$ctrl.usDateTime">
+            <span>US Date/Time :</span>
+            <span>{{$ctrl.dateTime}}</span>
+        </div>
+    </div>
 </div>

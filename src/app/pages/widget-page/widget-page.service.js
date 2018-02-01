@@ -1,25 +1,19 @@
-import angular from 'angular';
-import { default as controller } from './widget-page.component.js';
-import templateUrl from './widget-page.html';
-import './widget-page.scss';
+export default class WidgetPageService {
+    constructor() {
 
-const widgetPageComponent = {
-    templateUrl,
-    controller,
-};
+    }
 
-const widgetPage = angular
-    .module('widgetPage', [
-    ])
-    .component('widgetPage', widgetPageComponent)
-    .config(($stateProvider) => {
-        $stateProvider
-            .state('widgetPage', {
-                url: '/widgetPage',
-                title: 'widgetPage',
-                component: 'widgetPage',
-            });
-    })
-    .name;
+    getCountries(success, error) {
+        const xhr = new XMLHttpRequest();
 
-export default widgetPage;
+        xhr.onreadystatechange = () => {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                xhr.status === 200 ? success(JSON.parse(xhr.responseText)) : error(xhr);
+            }
+        };
+
+        const path = './countries.json';
+        xhr.open("GET", path, true);
+        xhr.send();
+    }
+}

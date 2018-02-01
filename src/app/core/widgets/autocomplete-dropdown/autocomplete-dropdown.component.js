@@ -19,8 +19,6 @@ export default class AutocompleteDropdownComponent {
     }
 
     $onChanges(changes) {
-
-
         if (changes.selected && this.selected) {
             if (typeof this.selected === 'string') {
                 this.model = this.selected;
@@ -46,7 +44,7 @@ export default class AutocompleteDropdownComponent {
     }
 
     handleKeyDown(event) {
-        if (event.key === 'Enter' && !this.allowSubmit) {
+        if (event.key === 'Enter') {
             this.model = this.fallbackModel;
             return;
         }
@@ -71,6 +69,7 @@ export default class AutocompleteDropdownComponent {
             this.skipBlur = false;
             return;
         }
+        
         if (this.model) {
             const regex = new RegExp(`^${this.model}`, 'i');
 

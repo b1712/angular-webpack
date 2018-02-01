@@ -20,7 +20,8 @@ export class AutocompleteResultsComponent {
 
     updateResults() {
         const elements = this.items.map(item =>
-            `<li class="autocomplete-dropdown__results-item" data-key="${item[this.displayField]}">${item[this.displayField]}</li>`,
+            `<li class="autocomplete-dropdown__results-item" 
+                data-key="${item[this.displayField]}">${item[this.displayField]}</li>`,
         ).join('');
 
         this.elements = SCE.trustAsHtml(elements);

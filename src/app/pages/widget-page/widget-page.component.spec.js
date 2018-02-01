@@ -1,23 +1,26 @@
 const sinon = require('sinon');
 const expect = require('chai').expect;
 import WidgetPageComponent from './widget-page.component';
+import WidgetPageService from './widget-page.service';
 
 let ctrl;
+const service = sinon.stub(new WidgetPageService());
 
 
 describe('Document Capture Component', () => {
 
     beforeEach(() => {
-        ctrl = new WidgetPageComponent();
+        ctrl = new WidgetPageComponent(
+            service,
+        );
     });
 
     describe('$onInit()', () => {
 
         it('should call loadJSON', () => {
-            ctrl.loadJSON = sinon.stub();
             ctrl.$onInit();
-            
-            expect(ctrl.loadJSON.calledOnce).to.equal(true);
+
+            expect(service.getCountries.calledOnce).to.equal(true);
 
         });
     });

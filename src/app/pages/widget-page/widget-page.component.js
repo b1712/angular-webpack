@@ -2,13 +2,13 @@
 
 export default class WidgetPageComponent {
     constructor(
-
+        /** WidgetPageService */ widgetPageService,
     ) {
-
+        this.service = widgetPageService;
     }
 
     $onInit() {
-        this.loadJSON('./countries.json',
+        this.service.getCountries(
             (success) => {
                 this.countries = success.countries;
             },
@@ -16,19 +16,8 @@ export default class WidgetPageComponent {
                 console.log('Unable to parse countries from json file, ', error)
             }
         );
-    }
-
-    loadJSON(path, success, error) {
-        const xhr = new XMLHttpRequest();
-
-        xhr.onreadystatechange = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                xhr.status === 200 ? success(JSON.parse(xhr.responseText)) : error(xhr);
-            }
-        };
-
-        xhr.open("GET", path, true);
-        xhr.send();
+        this.now = new Date();
+        this.dateTime = this.now.toLocaleString()
     }
 
     handleCountrySelection({ value: country }) {
